@@ -1,7 +1,12 @@
+import Nav from "@/components/HomePage/Nav";
 import React from "react";
 
 const HomePage = () => {
-  return <div className="text-3xl">HomePage</div>;
+  return (
+    <>
+      <Nav />
+    </>
+  );
 };
 
 export default HomePage;

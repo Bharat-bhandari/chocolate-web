@@ -3,9 +3,9 @@ import { PiBagSimple } from "react-icons/pi";
 
 const Nav = () => {
   return (
-    <div className="text-sm text-white bg-black1">
-      <div className="grid grid-cols-3 px-[2.5%]">
-        <div className="flex items-center justify-between">
+    <div className="sticky top-0 z-20 text-sm text-white bg-black1">
+      <div className="grid grid-cols-3 px-[2.5%] py-2">
+        <div className="flex items-center gap-[20%]">
           <div>
             <svg
               preserveAspectRatio="xMidYMid meet"
@@ -19,7 +19,7 @@ const Nav = () => {
               aria-hidden="true"
               aria-label=""
               fill="white"
-              className="w-6 h-4 text-white"
+              className="w-8 h-4 text-white"
             >
               <g>
                 <path d="M156 84v6H44v-6h112z"></path>
@@ -34,7 +34,7 @@ const Nav = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <div class="flex justify-center h-12 w-28 bg-black relative bottom-3 border border-black rounded-br-full rounded-bl-full z-10">
+          <div>
             <svg
               preserveAspectRatio="xMidYMid meet"
               data-bbox="163.7 203.6 246.8 105.505"

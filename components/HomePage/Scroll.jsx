@@ -175,7 +175,7 @@ const Scroll = () => {
 
   return (
     <>
-      <section ref={container}>
+      <section ref={container} className="hidden md:block">
         <div className="grid max-h-screen grid-cols-3 bg-white">
           <div className="flex items-center p-10 balls">
             <Image

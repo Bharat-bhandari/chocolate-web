@@ -19,7 +19,7 @@ const Nav = () => {
               aria-hidden="true"
               aria-label=""
               fill="white"
-              className="w-8 h-4 text-white"
+              className="h-4 text-white w-7 md:w-8"
             >
               <g>
                 <path d="M156 84v6H44v-6h112z"></path>
@@ -27,7 +27,7 @@ const Nav = () => {
               </g>
             </svg>
           </div>
-          <div className="flex gap-6 ">
+          <div className="hidden gap-6 md:flex ">
             <div className="navitem1">SHOP</div>
             <div className="navitem2">WHOLESALE</div>
             <div className="navitem3">TEA OF MONTH</div>
@@ -127,7 +127,7 @@ const Nav = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-6">
-          <div>LOG IN</div>
+          <div className="hidden md:block">LOG IN</div>
           <div>
             <PiBagSimple className="size-6" />
           </div>

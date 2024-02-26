@@ -24,10 +24,10 @@ const Journel = () => {
   });
 
   return (
-    <section ref={container} className="h-[100vh] bg-white text-[#181818] ">
-      <div className="px-[7%] pt-[3%]">
+    <section ref={container} className=" bg-white text-[#181818] ">
+      <div className="md:px-[7%] md:pt-[3%] p-[10%]">
         <p className="mb-2 text-2xl">Lisa's Journal</p>
-        <div className="grid grid-cols-3 gap-10">
+        <div className="flex flex-col gap-20 pb-24 md:gap-10 md:grid-cols-3 md:grid">
           <div>
             <div className="mx-auto">
               <Image

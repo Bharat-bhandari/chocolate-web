@@ -16,17 +16,17 @@ const Hero = () => {
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             width: "100%",
-            height: "91vh",
+            height: "95vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <div>
-            <div className="mb-0 pb-0 text-center text-[8vw] leading-[14vh]">
+          <div className="mb-[50%] sm:mb-[10%]">
+            <div className="mb-0 pb-0 text-center text-[8.5vw] lg:text-[8vw] lg:leading-[14vh]">
               YOUR SEVEN STAR
             </div>
-            <div className="mt-0 pt-0 text-center text-[8vw] leading-[14vh]">
+            <div className="mt-0 pt-0 text-center text-[8.5vw] lg:text-[8vw] lg:leading-[14vh]">
               CONCIERGE TEA CO.
             </div>
           </div>

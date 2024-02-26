@@ -7,14 +7,18 @@ const Partner = () => {
       className="w-full  bg-[#131313] flex flex-col justify-center "
     >
       <div className="flex flex-col mt-10 test">
-        <p className="mb-0 text-center text-7xl ">IMMERSE YOURSELF IN</p>
-        <p className="mt-0 text-center text-7xl">OUR OPULENT WORLD</p>
+        <p className="mb-0 text-center text-[7vw] md:text-[5vw]  ">
+          IMMERSE YOURSELF IN
+        </p>
+        <p className="mt-0 text-center text-[7vw] md:text-[5vw] ">
+          OUR OPULENT WORLD
+        </p>
       </div>
-      <div className="flex justify-center text-2xl text-center">
+      <div className="flex justify-center mt-32 text-2xl text-center">
         Proudly Served At
       </div>
 
-      <div className="flex  max-w-[80%] mx-auto gap-32 items-end mt-16">
+      <div className="lg:flex hidden  max-w-[80%] mx-auto gap-32 items-end mt-16">
         <svg
           preserveAspectRatio="xMidYMid meet"
           data-bbox="378.5 251.4 1654.1 729.1"

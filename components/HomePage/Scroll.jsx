@@ -212,7 +212,10 @@ const Scroll = () => {
               src={leaf}
               className="object-cover w-full h-full"
               alt="leaf"
-              priority="true"
+              width={0}
+              height={0}
+              priority={true}
+              sizes="100vw"
             />
           </div>
         </div>

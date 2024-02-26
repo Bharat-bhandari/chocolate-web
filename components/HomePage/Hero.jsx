@@ -23,8 +23,12 @@ const Hero = () => {
           }}
         >
           <div>
-            <div className="mb-0 text-center text-9xl">YOUR SEVEN STAR</div>
-            <div className="mt-0 text-center text-9xl">CONCIERGE TEA CO.</div>
+            <div className="mb-0 pb-0 text-center text-[8vw] leading-[14vh]">
+              YOUR SEVEN STAR
+            </div>
+            <div className="mt-0 pt-0 text-center text-[8vw] leading-[14vh]">
+              CONCIERGE TEA CO.
+            </div>
           </div>
         </div>
       </div>

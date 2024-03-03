@@ -10,10 +10,9 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-      <Nav />
       <Hero />
       <Partner />
-      <Scroll />
+      {/* <Scroll /> */}
       <Collection />
       <Journel />
       <About />

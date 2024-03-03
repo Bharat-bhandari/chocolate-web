@@ -1,12 +1,41 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { PiBagSimple } from "react-icons/pi";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { IoIosArrowDown } from "react-icons/io";
+
+import NavModal from "./NavModal";
 
 const Nav = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const { data: session } = useSession();
+
+  // console.log(session);
+
+  const userName = session?.user?.name.split(" ")[0];
+
+  const [providers, setProviders] = useState(false);
+  const [isProfileOpen, setProfileOpen] = useState(false);
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+
+      setProviders(res);
+    };
+
+    setAuthProviders();
+  }, []);
+
   return (
     <div className="sticky top-0 z-20 text-sm text-white bg-black1">
       <div className="grid grid-cols-3 px-[2.5%] py-2">
         <div className="flex items-center gap-[20%]">
-          <div>
+          <button onClick={() => setShowModal(true)}>
             <svg
               preserveAspectRatio="xMidYMid meet"
               data-bbox="44 84 112 32"
@@ -26,7 +55,13 @@ const Nav = () => {
                 <path d="M156 110v6H44v-6h112z"></path>
               </g>
             </svg>
-          </div>
+          </button>
+
+          {/* {showModal && (
+            <NavModal onClose={() => setShowModal(false)}>
+              Hello from the modal!
+            </NavModal>
+          )} */}
           <div className="hidden gap-6 md:flex ">
             <div className="navitem1">SHOP</div>
             <div className="navitem2">WHOLESALE</div>
@@ -127,7 +162,93 @@ const Nav = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-6">
-          <div className="hidden md:block">LOG IN</div>
+          {/* LogIN/LogOUT */}
+          {!session && (
+            <div className="hidden md:block">
+              {providers &&
+                Object.values(providers).map((provider, i) => (
+                  <button key={i} onClick={() => signIn(provider.id)}>
+                    Log In
+                  </button>
+                ))}
+            </div>
+          )}
+
+          {session && (
+            // <div>Bharat</div>
+            <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+              {/* <!-- Profile dropdown button --> */}
+              <div className="relative ml-3">
+                <div>
+                  <button
+                    type="button"
+                    className="relative flex text-sm rounded-md "
+                    id="user-menu-button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    onClick={() => setProfileOpen((prev) => !prev)}
+                  >
+                    <span className="absolute -inset-1.5"></span>
+                    {/* <span className="sr-only">Open user menu</span> */}
+                    <div className="flex items-center gap-1 px-2 py-1">
+                      <IoIosArrowDown className="size-4" />
+                      <div>{userName}</div>
+                    </div>
+                  </button>
+                </div>
+
+                {/* <!-- Profile dropdown --> */}
+                {isProfileOpen && (
+                  <div
+                    id="user-menu"
+                    className="absolute right-0 z-30 py-1 mt-2 text-white origin-top-right rounded-md shadow-lg w-36 bg-black2 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
+                    tabIndex="-1"
+                  >
+                    <Link
+                      href="/profile"
+                      className="block px-4 py-2 text-sm "
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="user-menu-item-0"
+                      onClick={() => {
+                        setProfileOpen(false);
+                      }}
+                    >
+                      Profile
+                    </Link>
+                    <Link
+                      href="/properties/saved"
+                      className="block px-4 py-2 text-sm "
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="user-menu-item-2"
+                      onClick={() => {
+                        setProfileOpen(false);
+                      }}
+                    >
+                      My Orders
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setProfileOpen(false);
+                        signOut();
+                      }}
+                      className="block px-4 py-2 text-sm "
+                      role="menuitem"
+                      tabIndex="-1"
+                      id="user-menu-item-2"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           <div>
             <PiBagSimple className="size-6" />
           </div>

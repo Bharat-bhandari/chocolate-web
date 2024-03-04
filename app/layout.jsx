@@ -2,7 +2,7 @@ import "@/assets/styles/globals.css";
 import Nav from "@/components/HomePage/Nav";
 import AuthProvider from "@/components/RestComponents/AuthProvider";
 
-const MainLayout = ({ children }) => {
+const MainLayout = async ({ children }) => {
   return (
     <AuthProvider>
       <html lang="en">

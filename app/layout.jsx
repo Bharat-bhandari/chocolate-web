@@ -10,7 +10,7 @@ const MainLayout = async ({ children }) => {
           suppressHydrationWarning={true}
           className="text-white font-playfair bg-black2 "
         >
-          <Nav />
+          {/* <Nav /> */}
           <main>{children}</main>
           <div id="nav-modal"></div>
         </body>

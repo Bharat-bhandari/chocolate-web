@@ -49,7 +49,14 @@ export const authOptions = {
       session.user.id = user._id.toString();
       // 3. Return session
 
-      return session;
+      const newSession = {
+        ...session,
+        user: {
+          ...session.user,
+          role: user.role,
+        },
+      };
+      return newSession;
     },
   },
 };

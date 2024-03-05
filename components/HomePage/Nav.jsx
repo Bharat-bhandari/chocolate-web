@@ -14,9 +14,8 @@ const Nav = () => {
 
   const { data: session } = useSession();
 
-  // console.log(session);
-
   const userName = session?.user?.name.split(" ")[0];
+  const isAdmin = session?.user?.role === "admin";
 
   const [providers, setProviders] = useState(false);
   const [isProfileOpen, setProfileOpen] = useState(false);
@@ -231,6 +230,21 @@ const Nav = () => {
                     >
                       My Orders
                     </Link>
+                    {isAdmin && (
+                      <Link
+                        href="/admin/dashboard"
+                        className="block px-4 py-2 text-sm "
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="user-menu-item-2"
+                        onClick={() => {
+                          setProfileOpen(false);
+                        }}
+                      >
+                        Dashboard
+                      </Link>
+                    )}
+
                     <button
                       onClick={() => {
                         setProfileOpen(false);

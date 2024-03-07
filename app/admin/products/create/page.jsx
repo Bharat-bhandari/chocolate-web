@@ -1,7 +1,12 @@
+import ProductForm from "@/components/AdminPage/ProductForm";
 import React from "react";
 
 const CreatePage = () => {
-  return <div>CreatePage</div>;
+  return (
+    <>
+      <ProductForm />
+    </>
+  );
 };
 
 export default CreatePage;

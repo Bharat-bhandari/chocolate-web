@@ -13,7 +13,9 @@ const AdminLayout = async ({ children }) => {
 
   return (
     <>
-      <AdminSidebar>{children}</AdminSidebar>
+      <div className="text-black bg-white">
+        <AdminSidebar>{children}</AdminSidebar>
+      </div>
     </>
   );
 };

@@ -10,11 +10,11 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 const AdminSidebar = ({ children }) => {
   return (
     <div className="flex">
-      <div className="sticky top-0 flex flex-col justify-between w-64 h-screen p-10 bg-cyan-600">
+      <div className="sticky top-0 flex flex-col justify-between h-screen p-10 w-72 bg-black1">
         <ul className="space-y-4 text-white">
           <li>
             <Link
-              className="text-lg font-semibold text-white"
+              className="text-xl font-semibold text-white"
               href="/admin/dashboard"
             >
               Ecommerce
@@ -25,8 +25,8 @@ const AdminSidebar = ({ children }) => {
               className="flex items-center space-x-1"
               href="/admin/dashboard"
             >
-              <PiSquaresFour className="w-4 h-4" />
-              <span>Dashboard</span>
+              <PiSquaresFour className="w-5 h-5" />
+              <span className="text-lg">Dashboard</span>
             </Link>
             <hr className="w-full " />
           </li>
@@ -35,8 +35,8 @@ const AdminSidebar = ({ children }) => {
               className="flex items-center space-x-1"
               href="/admin/products"
             >
-              <IoCartOutline className="w-4 h-4" />
-              <span>Products</span>
+              <IoCartOutline className="w-5 h-5" />
+              <span className="text-lg">Products</span>
             </Link>
             <hr className="w-full " />
           </li>
@@ -45,22 +45,22 @@ const AdminSidebar = ({ children }) => {
               className="flex items-center space-x-1"
               href="/admin/products/featured/add"
             >
-              <HiOutlineSparkles className="w-4 h-4" />
-              <span>Featured</span>
+              <HiOutlineSparkles className="w-5 h-5" />
+               <span className="text-lg">Featured</span>
             </Link>
             <hr className="w-full " />
           </li> */}
           <li>
             <Link className="flex items-center space-x-1" href="/admin/sales">
-              <MdCurrencyRupee className="w-4 h-4" />
-              <span>Sales</span>
+              <MdCurrencyRupee className="w-5 h-5" />
+              <span className="text-lg">Sales</span>
             </Link>
             <hr className="w-full " />
           </li>
           <li>
             <Link className="flex items-center space-x-1" href="/admin/orders">
-              <HiOutlineShoppingBag className="w-4 h-4" />
-              <span>Orders</span>
+              <HiOutlineShoppingBag className="w-5 h-5" />
+              <span className="text-lg">Orders</span>
             </Link>
             <hr className="w-full " />
           </li>

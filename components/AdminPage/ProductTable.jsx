@@ -1,6 +1,6 @@
 "use client";
-import { PencilIcon } from "@heroicons/react/24/solid";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { IoPencil } from "react-icons/io5";
+import { FiPlus } from "react-icons/fi";
 import {
   Typography,
   CardBody,
@@ -12,23 +12,9 @@ import {
 import truncate from "truncate";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import SearchForm from "@components/SearchForm";
+import SearchForm from "./SearchForm";
 
-export interface Product {
-  id: string;
-  title: string;
-  thumbnail: string;
-  description: string;
-  price: {
-    mrp: number,
-    salePrice: number,
-    saleOff: number,
-  };
-  category: string;
-  quantity: number;
-}
-
-const formatPrice = (amount: number) => {
+const formatPrice = (amount) => {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "INR",
@@ -42,18 +28,11 @@ const TABLE_HEAD = [
   "MRP",
   "Sale Price",
   "Quantity",
-  "Category",
+  // "Category",
   "Edit",
 ];
 
-interface Props {
-  products: Product[];
-  currentPageNo: number;
-  hasMore?: boolean;
-  showPageNavigator?: boolean;
-}
-
-export default function ProductTable(props: Props) {
+export default function ProductTable(props) {
   const router = useRouter();
   const {
     products = [],
@@ -76,18 +55,20 @@ export default function ProductTable(props: Props) {
     <div className="py-5">
       <div className="flex flex-col justify-between gap-8 mb-4 md:flex-row md:items-center">
         <div>
-          <Typography variant="h5" color="blue-gray">
+          <Typography variant="h4" color="blue-gray">
             Products
           </Typography>
         </div>
         <div className="flex w-full gap-2 shrink-0 md:w-max">
           <SearchForm />
           <Link
-            href="/products/create"
+            href="/admin/products/create"
             className="select-none font-bold text-center uppercase transition-all text-xs py-2 px-4 rounded-lg bg-blue-500 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none flex items-center gap-3"
           >
-            <PlusIcon strokeWidth={2} className="w-4 h-4" />{" "}
-            <span>Add New</span>
+            <div className="flex items-center">
+              <FiPlus strokeWidth={2} className="w-5 h-5 opacity-70" />
+              <span className="w-20 p-1 text-sm">Add New</span>
+            </div>
           </Link>
         </div>
       </div>
@@ -98,12 +79,12 @@ export default function ProductTable(props: Props) {
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  className="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50"
+                  className="p-4 bg-gray-50 border-y border-blue-gray-100"
                 >
                   <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="text-base font-normal leading-none opacity-70"
                   >
                     {head}
                   </Typography>
@@ -175,7 +156,7 @@ export default function ProductTable(props: Props) {
                   <td className={classes}>
                     <Link href={`/products/update/${id}`}>
                       <IconButton variant="text" color="blue-gray">
-                        <PencilIcon className="w-4 h-4" />
+                        <IoPencil className="w-4 h-4" />
                       </IconButton>
                     </Link>
                   </td>

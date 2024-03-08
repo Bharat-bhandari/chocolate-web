@@ -1,6 +1,7 @@
 import "@/assets/styles/globals.css";
 import Nav from "@/components/HomePage/Nav";
 import AuthProvider from "@/components/RestComponents/AuthProvider";
+import Notification from "@/components/RestComponents/Notification";
 
 const MainLayout = async ({ children }) => {
   return (
@@ -13,6 +14,7 @@ const MainLayout = async ({ children }) => {
           {/* <Nav /> */}
           <main>{children}</main>
           <div id="nav-modal"></div>
+          <Notification />
         </body>
       </html>
     </AuthProvider>

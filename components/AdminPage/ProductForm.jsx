@@ -19,7 +19,7 @@ const defaultValue = {
   bulletPoints: [""],
   mrp: 0,
   salePrice: 0,
-  category: "",
+  // category: "",
   quantity: 0,
 };
 
@@ -116,7 +116,7 @@ export default function ProductForm(props) {
     <div className="max-w-3xl p-4 mx-auto">
       <h1 className="mb-2 text-xl">Add new product</h1>
 
-      <form action={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
           <h3>Poster</h3>
           <ImageSelector

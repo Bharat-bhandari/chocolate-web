@@ -11,7 +11,7 @@ const CreatePage = () => {
     try {
       await newProductInfoSchema.validate(values, { abortEarly: false });
 
-      console.log("values", values);
+      // console.log("values", values);
       const formData = new FormData();
 
       formData.append("title", values.title);

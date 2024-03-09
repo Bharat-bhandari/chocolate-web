@@ -13,7 +13,7 @@ const AdminLayout = async ({ children }) => {
 
   return (
     <>
-      <div className="text-black bg-white">
+      <div className="font-sans text-black bg-white">
         <AdminSidebar>{children}</AdminSidebar>
       </div>
     </>

@@ -1,12 +1,11 @@
 "use client";
-import { IoPencil } from "react-icons/io5";
+import { HiPencil } from "react-icons/hi2";
 import { FiPlus } from "react-icons/fi";
 import {
   Typography,
   CardBody,
   CardFooter,
   Avatar,
-  IconButton,
   Button,
 } from "@material-tailwind/react";
 import truncate from "truncate";
@@ -67,7 +66,7 @@ export default function ProductTable(props) {
           >
             <div className="flex items-center">
               <FiPlus strokeWidth={2} className="w-5 h-5 opacity-70" />
-              <span className="w-20 p-1 text-sm">Add New</span>
+              <span className="w-20 text-sm">Add New</span>
             </div>
           </Link>
         </div>
@@ -146,18 +145,16 @@ export default function ProductTable(props) {
                       </Typography>
                     </div>
                   </td>
-                  <td className={classes}>
+                  {/* <td className={classes}>
                     <div className="w-max">
                       <Typography variant="small" color="blue-gray">
                         {category}
                       </Typography>
                     </div>
-                  </td>
+                  </td> */}
                   <td className={classes}>
-                    <Link href={`/products/update/${id}`}>
-                      <IconButton variant="text" color="blue-gray">
-                        <IoPencil className="w-4 h-4" />
-                      </IconButton>
+                    <Link href={`/admin/products/update/${id}`}>
+                      <HiPencil className="w-4 h-4" />
                     </Link>
                   </td>
                 </tr>

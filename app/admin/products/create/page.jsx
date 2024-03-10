@@ -5,6 +5,7 @@ import { newProductInfoSchema } from "@/utils/validationSchema";
 import { toast } from "react-toastify";
 import { ValidationError } from "yup";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 const CreatePage = () => {
   const handleCreateProduct = async (values) => {
@@ -32,11 +33,17 @@ const CreatePage = () => {
 
       formData.append("thumbnail", values.thumbnail);
 
-      await axios.post("/api/products", formData, {
+      const res = await axios.post("/api/products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      if (res.status === 200) {
+        redirect("/api/products");
+      } else {
+        toast.error("Something went wrong");
+      }
     } catch (error) {
       if (error instanceof ValidationError) {
         error.inner.map((err) => {

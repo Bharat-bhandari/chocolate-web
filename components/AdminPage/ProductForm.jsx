@@ -24,7 +24,7 @@ const defaultValue = {
 };
 
 export default function ProductForm(props) {
-  const { onSubmit, initialValue } = props;
+  const { onSubmit, onImageRemove, initialValue } = props;
   const [isPending, startTransition] = useTransition();
   const [images, setImages] = useState([]);
   const [thumbnail, setThumbnail] = useState();
@@ -58,13 +58,42 @@ export default function ProductForm(props) {
     setProductInfo({ ...productInfo, bulletPoints: [...oldValues] });
   };
 
-  const removeImage = useCallback(
-    (index) => {
-      const newImages = images.filter((_, idx) => idx !== index);
-      setImages([...newImages]);
-    },
-    [images]
-  );
+  // const removeImage = useCallback(
+  //   (index) => {
+  //     const newImages = images.filter((_, idx) => idx !== index);
+  //     setImages([...newImages]);
+  //   },
+  //   [images]
+  // );
+
+  const removeImage = async (index) => {
+    if (!productImagesSource[index]) return;
+
+    // if image is from cloud we want to remove it from cloud.
+
+    const imageToRemove = productImagesSource[index];
+    const cloudSourceUrl = "https://res.cloudinary.com";
+
+    if (imageToRemove.startsWith(cloudSourceUrl)) {
+      onImageRemove && onImageRemove(imageToRemove);
+    } else {
+      // if this image is from local state we want to update local state
+      const fileIndexDifference = productImagesSource.length - images.length;
+      const indexToRemove = index - fileIndexDifference;
+
+      const newImageFiles = images.filter((_, i) => {
+        if (i !== indexToRemove) return true;
+      });
+      setImages([...newImageFiles]);
+    }
+
+    // also we want to update UI
+    const newImagesSource = productImagesSource.filter((_, i) => {
+      if (i !== index) return true;
+    });
+
+    setProductImagesSource([...newImagesSource]);
+  };
 
   const getBtnTitle = () => {
     if (isForUpdate) return isPending ? "Updating..." : "Update";

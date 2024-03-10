@@ -27,7 +27,7 @@ const fetchProductInfo = async (productId) => {
     images: product.images?.map(({ id, url }) => ({ url, id })),
   };
 
-  return finalProduct;
+  return JSON.stringify(finalProduct);
 };
 
 const UpdatePage = async (props) => {
@@ -35,7 +35,7 @@ const UpdatePage = async (props) => {
 
   const product = await fetchProductInfo(productId);
 
-  return <UpdateProduct product={product} />;
+  return <UpdateProduct product={JSON.parse(product)} />;
 };
 
 export default UpdatePage;

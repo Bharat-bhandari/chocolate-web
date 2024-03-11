@@ -6,6 +6,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineSparkles } from "react-icons/hi2";
 import { MdCurrencyRupee } from "react-icons/md";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const AdminSidebar = ({ children }) => {
   return (
@@ -65,6 +66,13 @@ const AdminSidebar = ({ children }) => {
             <hr className="w-full " />
           </li>
         </ul>
+
+        <Link href="/">
+          <div className="flex items-center justify-center w-full text-white cursor-pointer hover:scale-105 hover:border-white">
+            <IoIosArrowRoundBack className="size-7" />
+            Go To Home
+          </div>
+        </Link>
 
         {/* <div>
           <SignOutButton>

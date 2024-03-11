@@ -34,9 +34,6 @@ const PRODUCTS_PER_PAGE = 10;
 const Products = async ({ searchParams }) => {
   const { page = "1" } = searchParams;
 
-  console.log(page);
-  console.log(isNaN(+page));
-
   if (isNaN(+page)) {
     return redirect("/404");
   }

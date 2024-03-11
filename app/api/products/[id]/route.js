@@ -15,7 +15,7 @@ export const PUT = async (request, { params }) => {
 
     const existingProduct = await ProductModel.findById(id);
 
-    console.log(existingProduct);
+    // console.log(existingProduct);
 
     if (!existingProduct) {
       return new Response("Product does not exist ", { status: 404 });

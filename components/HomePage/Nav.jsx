@@ -166,7 +166,11 @@ const Nav = () => {
             <div className="hidden md:block">
               {providers &&
                 Object.values(providers).map((provider, i) => (
-                  <button key={i} onClick={() => signIn(provider.id)}>
+                  <button
+                    key={i}
+                    className="text-white border-b border-transparent hover:text-white hover:border-white focus:outline-none"
+                    onClick={() => signIn(provider.id)}
+                  >
                     Log In
                   </button>
                 ))}

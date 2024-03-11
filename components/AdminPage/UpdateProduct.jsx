@@ -37,7 +37,6 @@ const UpdateProduct = ({ product }) => {
   const handleOnSubmit = async (values) => {
     try {
       await updateProductInfoSchema.validate(values, { abortEarly: false });
-      console.log(values.id);
 
       const formData = new FormData();
       formData.append("title", values.title);

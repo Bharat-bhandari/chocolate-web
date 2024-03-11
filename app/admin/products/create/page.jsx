@@ -5,8 +5,7 @@ import { newProductInfoSchema } from "@/utils/validationSchema";
 import { toast } from "react-toastify";
 import { ValidationError } from "yup";
 import axios from "axios";
-import { redirect } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const CreatePage = () => {
   const router = useRouter();

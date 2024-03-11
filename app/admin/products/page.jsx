@@ -1,6 +1,7 @@
 import ProductTable from "@/components/AdminPage/ProductTable";
 import connectDB from "@/config/database";
 import ProductModel from "@/models/ProductModel";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const fetchProducts = async (pageNo, perPage) => {
@@ -28,14 +29,37 @@ const fetchProducts = async (pageNo, perPage) => {
   });
 };
 
-const Product = async () => {
-  const products = await fetchProducts(1, 10);
+const PRODUCTS_PER_PAGE = 10;
+
+const Products = async ({ searchParams }) => {
+  const { page = "1" } = searchParams;
+
+  console.log(page);
+  console.log(isNaN(+page));
+
+  if (isNaN(+page)) {
+    return redirect("/404");
+  }
+
+  const products = await fetchProducts(+page, PRODUCTS_PER_PAGE);
+
+  let hasMore = true;
+
+  if (products.length < PRODUCTS_PER_PAGE) {
+    hasMore = false;
+  } else {
+    hasMore = true;
+  }
 
   return (
     <div>
-      <ProductTable products={products} />
+      <ProductTable
+        products={products}
+        currentPageNo={+page}
+        hasMore={hasMore}
+      />
     </div>
   );
 };
 
-export default Product;
+export default Products;

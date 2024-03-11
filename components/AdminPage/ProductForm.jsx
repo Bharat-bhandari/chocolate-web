@@ -67,7 +67,7 @@ export default function ProductForm(props) {
   // );
 
   const removeImage = async (index) => {
-    if (!productImagesSource[index]) return;
+    if (!productImagesSource) return;
 
     // if image is from cloud we want to remove it from cloud.
 

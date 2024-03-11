@@ -52,36 +52,40 @@ export const PUT = async (request, { params }) => {
       }
     });
 
-    const imageUploadPromises = [];
+    if (images.length > 0) {
+      const imageUploadPromises = [];
 
-    for (const image of images) {
-      const imageBuffer = await image.arrayBuffer();
-      const imageArray = Array.from(new Uint8Array(imageBuffer));
-      const imageData = Buffer.from(imageArray);
+      for (const image of images) {
+        const imageBuffer = await image.arrayBuffer();
+        const imageArray = Array.from(new Uint8Array(imageBuffer));
+        const imageData = Buffer.from(imageArray);
 
-      // Convert the image data to base64
-      const imageBase64 = imageData.toString("base64");
+        // Convert the image data to base64
+        const imageBase64 = imageData.toString("base64");
 
-      // Make request to upload to Cloudinary
-      const result = await cloudinary.uploader.upload(
-        `data:image/png;base64,${imageBase64}`,
-        {
-          folder: "ChocolateWeb",
-        }
-      );
+        // Make request to upload to Cloudinary
+        const result = await cloudinary.uploader.upload(
+          `data:image/png;base64,${imageBase64}`,
+          {
+            folder: "ChocolateWeb",
+          }
+        );
 
-      imageUploadPromises.push(result);
+        imageUploadPromises.push(result);
 
-      // Wait for all images to upload
-      const uploadedImages = await Promise.all(imageUploadPromises);
+        // Wait for all images to upload
+        const uploadedImages = await Promise.all(imageUploadPromises);
 
-      // Add uploaded images to the productData Object
-      const newImages = uploadedImages.map((image) => ({
-        url: image.secure_url,
-        id: image.public_id,
-      }));
+        // Add uploaded images to the productData Object
+        const newImages = uploadedImages.map((image) => ({
+          url: image.secure_url,
+          id: image.public_id,
+        }));
 
-      productData.images = existingProduct.images.concat(newImages);
+        productData.images = existingProduct.images.concat(newImages);
+      }
+    } else {
+      productData.images = existingProduct.images;
     }
 
     // Check if there's a new thumbnail to update

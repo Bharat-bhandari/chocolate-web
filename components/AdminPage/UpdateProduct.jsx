@@ -10,8 +10,11 @@ import { updateProductInfoSchema } from "@/utils/validationSchema";
 import { ValidationError } from "yup";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const UpdateProduct = ({ product }) => {
+  const router = useRouter();
+
   const initialValue = {
     ...product,
     thumbnail: product.thumbnail.url,
@@ -60,11 +63,17 @@ const UpdateProduct = ({ product }) => {
 
       // console.log(formData);
 
-      await axios.put(`/api/products/${values.id}`, formData, {
+      const res = await axios.put(`/api/products/${values.id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      if (res.status === 200) {
+        router.push("/admin/products");
+      } else {
+        toast.error("Something went wrong");
+      }
     } catch (error) {
       if (error instanceof ValidationError) {
         error.inner.map((err) => {

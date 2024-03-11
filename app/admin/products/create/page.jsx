@@ -6,8 +6,11 @@ import { toast } from "react-toastify";
 import { ValidationError } from "yup";
 import axios from "axios";
 import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 const CreatePage = () => {
+  const router = useRouter();
+
   const handleCreateProduct = async (values) => {
     try {
       await newProductInfoSchema.validate(values, { abortEarly: false });
@@ -40,7 +43,7 @@ const CreatePage = () => {
       });
 
       if (res.status === 200) {
-        redirect("/api/products");
+        router.push("/admin/products");
       } else {
         toast.error("Something went wrong");
       }

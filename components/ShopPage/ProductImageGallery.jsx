@@ -21,12 +21,10 @@ export default function ProductImageGallery(props) {
   const { images } = props;
   const slider = useRef(null);
 
-  console.log("gallesry", images);
-
   return (
     <div>
       {images.length === 1 ? (
-        <div>
+        <div className="">
           <Image src={images[0]} alt="img" width={500} height={500} />
         </div>
       ) : (
@@ -39,8 +37,14 @@ export default function ProductImageGallery(props) {
         >
           {images.map((img, index) => {
             return (
-              <div key={index}>
-                <Image src={img} alt="img" width={500} height={500} />
+              <div key={index} className="flex items-center justify-center ">
+                <Image
+                  className="object-contain"
+                  src={img}
+                  alt="img"
+                  width={500}
+                  height={500}
+                />
               </div>
             );
           })}

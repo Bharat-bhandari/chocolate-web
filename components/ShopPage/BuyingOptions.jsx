@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useState, useTransition } from "react";
 import { Button } from "@material-tailwind/react";
 import CartCountUpdater from "./CartCountUpdater";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { useSession, signIn } from "next-auth/react";
 import { toast } from "react-toastify";
@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 export default function BuyingOptions() {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const { product } = useParams();
 
@@ -45,7 +46,7 @@ export default function BuyingOptions() {
         toast.error(error);
       }
 
-      // router.refresh();
+      router.refresh();
     } catch (error) {
       console.error("Error:", error);
       // Handle error here if needed

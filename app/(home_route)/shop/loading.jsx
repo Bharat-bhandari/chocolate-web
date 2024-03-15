@@ -11,13 +11,15 @@ const override = {
 
 const LoadingPage = ({ loading }) => {
   return (
-    <ClipLoader
-      color="#3b82f6"
-      loading={loading}
-      cssOverride={override}
-      size={150}
-      aria-label="Loading Spinner"
-    />
+    <div className="bg-white">
+      <ClipLoader
+        color="#3b82f6"
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+      />
+    </div>
   );
 };
 

@@ -10,8 +10,6 @@ import { useSession } from "next-auth/react";
 const ProfileForm = ({}) => {
   const { data: session } = useSession();
 
-  console.log("session", session);
-
   const name = session?.user?.name;
   const email = session?.user?.email;
   const avatar = session?.user?.image;

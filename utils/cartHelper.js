@@ -1,19 +1,12 @@
-import CartItems from "@/components/CartPage/CartItems";
-import connectDB from "@/config/database";
-import Cart from "@/models/CartModel";
-import { getUserSession } from "@/utils/getUserSession";
-import React from "react";
+const { default: connectDB } = require("@/config/database");
+const { default: Cart } = require("@/models/CartModel");
+const { Types } = require("mongoose");
 
-const fetchCartProducts = async () => {
-  const session = await getUserSession();
-
-  if (!session) {
-    return null;
-  }
+export const getCartItems = async (userId, cartId) => {
   await connectDB();
 
   const [cartItems] = await Cart.aggregate([
-    { $match: { userId: session._id } },
+    { $match: { userId: userId, _id: new Types.ObjectId(cartId) } },
     { $unwind: "$items" },
     {
       $lookup: {
@@ -65,30 +58,3 @@ const fetchCartProducts = async () => {
 
   return cartItems;
 };
-
-const CartPage = async () => {
-  const cart = await fetchCartProducts();
-
-  if (!cart)
-    return (
-      <div className="py-4 text-black bg-white px-[10%] pt-12">
-        <div className="mb-4">
-          <h1 className="text-2xl font-semibold">Your Cart Details</h1>
-          <hr />
-        </div>
-        <h1 className="py-10 text-2xl font-semibold text-center opacity-40">
-          Your cart is empty!
-        </h1>
-      </div>
-    );
-
-  // console.log(cart);
-
-  return (
-    <div className="text-black bg-white px-[10%] pt-12">
-      <CartItems {...cart} />
-    </div>
-  );
-};
-
-export default CartPage;

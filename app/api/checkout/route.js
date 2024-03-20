@@ -11,6 +11,8 @@ export const POST = async (req) => {
   try {
     const session = await getUserSession();
 
+    console.log("sesssion =", session);
+
     if (!session) return new Response("Unauthorized request", { status: 401 });
 
     const data = await req.json();
@@ -23,7 +25,7 @@ export const POST = async (req) => {
 
     // fetching cart details
 
-    const cartItems = await getCartItems(session._id, cartId);
+    const cartItems = await getCartItems(session._id.toString(), cartId);
 
     if (!cartItems) return new Response("Cart not found", { status: 404 });
 
@@ -41,6 +43,14 @@ export const POST = async (req) => {
       };
     });
 
+    const customer = await stripe.customers.create({
+      metadata: {
+        userId: session._id.toString(),
+        cartId: cartId,
+        type: "checkout",
+      },
+    });
+
     // we need to generate payment link and send to our frontend app
 
     const params = {
@@ -50,6 +60,7 @@ export const POST = async (req) => {
       success_url: process.env.PAYMENT_SUCCESS_URL,
       cancel_url: process.env.PAYMENT_CANCEL_URL,
       shipping_address_collection: { allowed_countries: ["IN"] },
+      customer: customer.id,
     };
 
     const checkoutSession = await stripe.checkout.sessions.create(params);

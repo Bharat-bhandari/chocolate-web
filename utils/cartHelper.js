@@ -1,12 +1,17 @@
 const { default: connectDB } = require("@/config/database");
 const { default: Cart } = require("@/models/CartModel");
-const { Types } = require("mongoose");
+const { Types, isValidObjectId } = require("mongoose");
 
 export const getCartItems = async (userId, cartId) => {
   await connectDB();
 
   const [cartItems] = await Cart.aggregate([
-    { $match: { userId: userId, _id: new Types.ObjectId(cartId) } },
+    {
+      $match: {
+        userId: new Types.ObjectId(userId),
+        _id: new Types.ObjectId(cartId),
+      },
+    },
     { $unwind: "$items" },
     {
       $lookup: {

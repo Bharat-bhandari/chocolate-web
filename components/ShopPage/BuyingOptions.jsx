@@ -20,6 +20,29 @@ export default function BuyingOptions() {
 
   const productId = product[1];
 
+  const handleCheckout = async () => {
+    try {
+      const res = await axios.post("/api/checkout/instant", {
+        productId: productId,
+      });
+
+      const { error, url } = res.data;
+
+      console.log("err", error);
+      console.log("url", url);
+
+      if (error) {
+        toast.error(error);
+      } else {
+        // open the checkout url
+
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleIncrement = () => {
     setQuantity((prevCount) => prevCount + 1);
   };
@@ -83,7 +106,13 @@ export default function BuyingOptions() {
       >
         Add to Cart
       </Button>
-      <Button color="amber" className="text-white rounded-full bg-black2">
+      <Button
+        onClick={() => {
+          startTransition(async () => await handleCheckout());
+        }}
+        color="amber"
+        className="text-white rounded-full bg-black2"
+      >
         Buy Now
       </Button>
     </div>

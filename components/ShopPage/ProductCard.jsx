@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
   const router = useRouter();
 
   const addToCart = async () => {
-    if (!session) {
+    if (!session?.username) {
       await signIn();
     }
     try {

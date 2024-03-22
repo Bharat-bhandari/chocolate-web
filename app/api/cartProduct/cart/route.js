@@ -9,7 +9,7 @@ export const POST = async (request) => {
 
     const user = { ...session, _id: session._id.toString() };
 
-    if (!session)
+    if (!session?.username)
       return new Response(JSON.stringify({ error: "unauthorized request!" }), {
         status: 401,
       });

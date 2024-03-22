@@ -7,7 +7,7 @@ import React from "react";
 const fetchCartProducts = async () => {
   const session = await getUserSession();
 
-  if (!session) {
+  if (!session?.username) {
     return null;
   }
   await connectDB();

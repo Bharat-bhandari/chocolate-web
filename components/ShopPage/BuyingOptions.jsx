@@ -55,7 +55,7 @@ export default function BuyingOptions() {
   const addToCart = async () => {
     if (!productId) return;
 
-    if (!session) {
+    if (!session?.username) {
       await signIn();
     }
     try {

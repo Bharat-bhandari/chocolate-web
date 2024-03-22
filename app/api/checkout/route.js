@@ -13,7 +13,8 @@ export const POST = async (req) => {
 
     console.log("sesssion =", session);
 
-    if (!session) return new Response("Unauthorized request", { status: 401 });
+    if (!session?.username)
+      return new Response("Unauthorized request", { status: 401 });
 
     const data = await req.json();
 
